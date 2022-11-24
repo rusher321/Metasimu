@@ -4,7 +4,11 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Huahui", "Ren", , "renhuahui@genomics.cn", role = c("cre"))
 Description: This package can simulate metagenomics table based some statitic methods.
-License: `use_mit_license()`
+License: use_mit_license()
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
+Imports: dirmult, ANCOMBC, LOCOM, coin, phyloseq, robCompositions, rstatix, zCompositions
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
