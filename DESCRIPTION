@@ -1,0 +1,10 @@
+Package: MetaSimu
+Title: Simulate the metagenomics profile table
+Version: 0.0.0.9000
+Authors@R: 
+    person("Huahui", "Ren", , "renhuahui@genomics.cn", role = c("cre"))
+Description: This package can simulate metagenomics table based some statitic methods.
+License: `use_mit_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
