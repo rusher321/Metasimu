@@ -16,14 +16,14 @@ Compare_meta <- function(dat, config, prep = 0.2, method = "all", C = NULL, ...)
   id <- intersect(rownames(dat), rownames(config))
   data_match <- dat[id, ]
   Y <- config[id, 1]
-  data_match <- data_match[, apply(data_match, 2, function(x){(sum(x==0)/length(x)) >= prep})]
+  data_match <- data_match[, apply(data_match, 2, function(x){(sum(x!=0)/length(x)) >= prep})]
 
   outlist <- list()
   ############ locom compare
   if(method == "all" | method == "locom"){
   res.locom <- LOCOM::locom(otu.table = data_match, Y = Y, C = C,
                      ref.otu = NULL, fdr.nominal = 0.2,
-                     n.perm.max = 50000, n.rej.stop = 100, ...)
+                     n.perm.max = 50000, prev.cut = prep, n.rej.stop = 100, ...)
 
   out.locom <- data.frame(effect = t(res.locom$effect.size)[,1],
                           pvalue = t(res.locom$p.otu)[,1],
@@ -94,7 +94,7 @@ Compare_meta <- function(dat, config, prep = 0.2, method = "all", C = NULL, ...)
     data_match__zclr <- cenLR(data_match_z)$x.clr
     data_match_zclr_f <- data_match__zclr[, colnames(data_match)]
     wilcox_res_zclr <- wilcox_all(datamatrix = data_match_zclr_f, configdata = meta.data)
-    outlist[["wilcox_res_zclr"]] <- wilcox.test()
+    outlist[["wilcox_res_zclr"]] <- wilcox_res_zclr
   }
 
   return(outlist)
